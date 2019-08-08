@@ -83,9 +83,11 @@ nav
     @apply mr-4
 
 .link
-  @apply uppercase ml-3 opacity-75
+  @apply uppercase ml-4 opacity-75 appearance-none font-bold
   &:hover
     @apply opacity-50
+  &.router-link-exact-active
+    @apply text-secondary
 
 .bars
   @apply block w-6 h-6

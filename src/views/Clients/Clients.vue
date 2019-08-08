@@ -1,5 +1,9 @@
 <template>
   <div class="main">
+    <div class="flex justify-between items-center mx-4 my-1">
+      <v-input class="w-1/2" name="pesquisa" v-model="search" label="Pesquisar cliente"/>
+      <v-button><i class="fas fa-plus mr-2"></i>Novo Cliente</v-button>
+    </div>
     <vuetable
       ref="vuetable"
       class="clients"
@@ -24,14 +28,17 @@
 
 <script>
 import Vuetable, { VuetablePagination } from 'vuetable-2'
+import VButton from '@/components/Buttons/Button'
+import VInput from '@/components/Inputs/Input'
 
 import Clients from '@/services/Clients'
 
 export default {
   name: 'clients',
-  components: { Vuetable, VuetablePagination },
+  components: { Vuetable, VuetablePagination, VButton, VInput },
   data: () => ({
     loading: false,
+    search: '',
 
     clients: [],
     pagination: {
