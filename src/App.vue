@@ -1,6 +1,6 @@
 <template>
-  <div id="app">
-    <div class="w-full flex flex-col px-6 justify-center bg-white shadow-md mb-4">
+  <div class="main_container">
+    <div class="navbar_container">
       <navbar/>
     </div>
     <div class="container">
@@ -20,6 +20,16 @@ export default {
 </script>
 
 <style lang="sass">
+
+*
+  font-family: 'Montserrat', sans-serif
+
+.main_container
+  @apply w-full min-h-screen max-h-full bg-gray-100
+
+.navbar_container
+  @apply w-full flex flex-col px-6 justify-center bg-white shadow-md mb-4
+  background-color: rgba(188, 71, 157, 0.1)
 
 .container
   @apply mx-auto px-4

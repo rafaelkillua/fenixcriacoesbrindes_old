@@ -27,8 +27,9 @@
       <img @click="modalnav = true" class="bars" src="@/assets/images/menu.svg" alt="">
       <nav>
         <div class="flex justify-center items-center">
-          <img class="avatar" src="https://www.gravatar.com/avatar/default?s=200&r=pg&d=mm">
-          <p class="username">Fênix</p>
+          <router-link class="link" to="/">Clientes</router-link>
+          <router-link class="link" to="/">Pedidos</router-link>
+          <router-link class="link" to="/">Relatórios</router-link>
         </div>
       </nav>
     </header>
@@ -54,7 +55,6 @@ export default {
 .navbar
   @apply w-full py-2 flex justify-center z-40
   @screen md
-  @apply
     @apply items-center
 
 header
@@ -82,8 +82,10 @@ nav
   @screen md
     @apply mr-4
 
-.username
-  @apply font-semibold text-sm text-black opacity-75 uppercase
+.link
+  @apply uppercase ml-3 opacity-75
+  &:hover
+    @apply opacity-50
 
 .bars
   @apply block w-6 h-6
