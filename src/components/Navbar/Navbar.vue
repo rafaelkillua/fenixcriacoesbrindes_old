@@ -27,7 +27,7 @@
       <img @click="modalnav = true" class="bars" src="@/assets/images/menu.svg" alt="">
       <nav>
         <div class="flex justify-center items-center">
-          <router-link class="link" to="/">Clientes</router-link>
+          <router-link class="link" to="/clients">Clientes</router-link>
           <router-link class="link" to="/">Pedidos</router-link>
           <router-link class="link" to="/">Relatórios</router-link>
         </div>
