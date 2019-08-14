@@ -3,6 +3,7 @@
     <span v-if="prefix && (focus || value)" class="prefix" :class="focus ? 'border-primary' : 'border-black'">{{prefix}}</span>
     <the-mask
       v-if="mask"
+      autocomplete="semautocompletecarai"
       :id="`${name}_input`"
       class="input bg-transparent"
       :value="value"
@@ -73,6 +74,7 @@
     />
     <input
       v-else
+      autocomplete="semautocompletecarai"
       :id="`${name}_input`"
       class="input"
       :value="value"

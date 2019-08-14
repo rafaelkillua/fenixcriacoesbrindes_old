@@ -1,8 +1,9 @@
 <template>
   <div class="main">
+    <client-modal v-if="showModal" @closeModal="showModal = false; loadClients()"></client-modal>
     <div class="flex justify-between items-center mx-4 my-1">
       <v-input class="w-1/2" name="pesquisa" v-model="search" label="Pesquisar cliente"/>
-      <v-button><i class="fas fa-plus mr-2"></i>Novo Cliente</v-button>
+      <v-button @click="showModal = true"><i class="fas fa-plus mr-2"></i>Novo Cliente</v-button>
     </div>
     <vuetable
       ref="vuetable"
@@ -30,14 +31,16 @@
 import Vuetable, { VuetablePagination } from 'vuetable-2'
 import VButton from '@/components/Buttons/Button'
 import VInput from '@/components/Inputs/Input'
+import ClientModal from '@/components/Modal/ClientModal'
 
 import Clients from '@/services/Clients'
 
 export default {
   name: 'clients',
-  components: { Vuetable, VuetablePagination, VButton, VInput },
+  components: { Vuetable, VuetablePagination, VButton, VInput, ClientModal },
   data: () => ({
     loading: false,
+    showModal: false,
     search: '',
 
     clients: [],
@@ -108,21 +111,16 @@ export default {
     },
     dataManager (sortOrder, pagination) {
       if (this.clients.length < 1) return
-
-      const from = (this.pagination.current_page - 1) * this.pagination.per_page
-      const to = from + this.pagination.per_page
-
       return {
         pagination: this.pagination,
-        data: this.clients.slice(from, to)
+        data: this.clients
       }
     },
     async loadClients () {
       try {
         this.loading = true
         this.$refs.vuetable.resetData()
-        this.clients = (await Clients.getClients())
-        this.clients.shift()
+        this.clients = await Clients.getClients()
         this.pagination = {
           current_page: 1,
           last_page: Math.ceil(this.clients.length / this.pagination.per_page),

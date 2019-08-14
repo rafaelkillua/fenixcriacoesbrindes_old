@@ -1,14 +1,12 @@
-import { db } from '@/plugins/db'
+import { getAllDocs, newDoc } from '@/plugins/db'
 
-const ref = 'client'
+const ref = 'clients'
 
 export default {
   getClients () {
-    return new Promise(resolve => {
-      db.ref(ref).once('value', snapshot => resolve(snapshot.val()))
-    })
+    return getAllDocs(ref)
   },
   newClient (data) {
-    return db.ref(ref)
+    return newDoc(ref, data)
   }
 }
