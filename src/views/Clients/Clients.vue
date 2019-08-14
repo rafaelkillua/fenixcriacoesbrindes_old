@@ -11,7 +11,7 @@
       :fields="header"
       :api-mode="false"
       :data-manager="dataManager"
-      :no-data-template="loading ? '' : 'Nenhum dado retornado'"
+      :no-data-template="loading ? '' : search.length ? 'Não encontrado' : 'Sem dados'"
     >
     </vuetable>
     <div class="flex justify-end">
@@ -113,7 +113,7 @@ export default {
       if (this.clients.length < 1) return
       return {
         pagination: this.pagination,
-        data: this.clients
+        data: this.clients.filter(d => d && d.name && d.name.toLowerCase().includes(this.search.toLowerCase()))
       }
     },
     async loadClients () {
@@ -134,6 +134,11 @@ export default {
       } finally {
         this.loading = false
       }
+    }
+  },
+  watch: {
+    search () {
+      this.$refs.vuetable.reload()
     }
   },
   mounted () {
