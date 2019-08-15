@@ -1,13 +1,12 @@
 <template>
   <div class="main">
-    <client-modal v-if="showModal" @closeModal="showModal = false; loadClients()"></client-modal>
     <div class="flex justify-between items-center mx-4 my-1">
-      <v-input class="w-1/2" name="pesquisa" v-model="search" label="Pesquisar cliente"/>
-      <v-button @click="showModal = true"><i class="fas fa-plus mr-2"></i>Novo Cliente</v-button>
+      <v-input class="w-1/2" name="pesquisa" v-model="search" label="Pesquisar ordem de serviço"/>
+      <v-button @click="showModal = true" link="/new-order"><i class="fas fa-plus mr-2"></i>Nova OS</v-button>
     </div>
     <vuetable
       ref="vuetable"
-      class="clients"
+      class="orders"
       :fields="header"
       :api-mode="false"
       :data-manager="dataManager"
@@ -31,19 +30,18 @@
 import Vuetable, { VuetablePagination } from 'vuetable-2'
 import VButton from '@/components/Buttons/Button'
 import VInput from '@/components/Inputs/Input'
-import ClientModal from '@/components/Modal/ClientModal'
 
-import Clients from '@/services/Clients'
+import Orders from '@/services/Orders'
 
 export default {
-  name: 'clients',
-  components: { Vuetable, VuetablePagination, VButton, VInput, ClientModal },
+  name: 'orders',
+  components: { Vuetable, VuetablePagination, VButton, VInput },
   data: () => ({
     loading: false,
     showModal: false,
     search: '',
 
-    clients: [],
+    orders: [],
     pagination: {
       current_page: 0,
       last_page: 0,
@@ -110,21 +108,21 @@ export default {
       }
     },
     dataManager (sortOrder, pagination) {
-      if (this.clients.length < 1) return
+      if (this.orders.length < 1) return
       return {
         pagination: this.pagination,
-        data: this.clients.filter(d => d && d.name && d.name.toLowerCase().includes(this.search.toLowerCase()))
+        data: this.orders.filter(d => d && d.name && d.name.toLowerCase().includes(this.search.toLowerCase()))
       }
     },
-    async loadClients () {
+    async loadOrders () {
       try {
         this.loading = true
         this.$refs.vuetable.resetData()
-        this.clients = await Clients.getClients()
+        this.orders = await Orders.getOrders()
         this.pagination = {
           current_page: 1,
-          last_page: Math.ceil(this.clients.length / this.pagination.per_page),
-          total: this.clients.length,
+          last_page: Math.ceil(this.orders.length / this.pagination.per_page),
+          total: this.orders.length,
           per_page: this.pagination.per_page
         }
         this.$refs.vuetable.reload()
@@ -142,7 +140,7 @@ export default {
     }
   },
   mounted () {
-    this.loadClients()
+    this.loadOrders()
   }
 }
 </script>
@@ -156,7 +154,7 @@ export default {
 
 <style lang="sass">
 
-.clients
+.orders
   @apply w-full text-sm
   thead tr th
     @apply p-4 text-xs text-gray-600

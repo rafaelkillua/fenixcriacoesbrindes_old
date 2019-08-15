@@ -40,4 +40,15 @@ export default {
   @screen xl
     @apply px-40
 
+.pagination_page_class
+  @apply h-8 w-8 border-l flex justify-center items-center cursor-pointer
+  &:first-of-type
+    @apply border-l-0 rounded-l-lg
+  &:last-of-type
+    @apply rounded-r-lg
+  &:hover
+    @apply bg-gray-100
+    &.cursor-not-allowed
+      @apply bg-transparent
+
 </style>

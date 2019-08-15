@@ -28,8 +28,8 @@
       <nav>
         <div class="flex justify-center items-center">
           <router-link class="link" to="/clients">Clientes</router-link>
-          <router-link class="link" to="/">Pedidos</router-link>
-          <router-link class="link" to="/">Relatórios</router-link>
+          <router-link class="link" to="/orders">Pedidos</router-link>
+          <!-- <router-link class="link" to="/">Relatórios</router-link> -->
         </div>
       </nav>
     </header>
@@ -83,11 +83,11 @@ nav
     @apply mr-4
 
 .link
-  @apply uppercase ml-4 opacity-75 appearance-none font-bold
+  @apply uppercase ml-4 opacity-75 appearance-none text-secondary
   &:hover
     @apply opacity-50
   &.router-link-exact-active
-    @apply text-secondary
+    @apply font-bold border-b border-secondary
 
 .bars
   @apply block w-6 h-6
