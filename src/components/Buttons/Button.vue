@@ -1,9 +1,13 @@
 <template>
   <div>
-    <button :class="`btn btn_${color} btn_${size}`" @click="$emit('click')" :disabled="disabled" :loading="loading">
+    <button v-if="!link" :class="`btn btn_${color} btn_${size}`" @click="$emit('click')" :disabled="disabled" :loading="loading">
       <i class="fas fa-spinner spin" v-if="loading"></i>
       <slot v-else>Avançar</slot>
     </button>
+    <router-link v-else :class="`btn btn_${color} btn_${size} btn_link`" :to="link" :disabled="disabled" :loading="loading">
+      <i class="fas fa-spinner spin" v-if="loading"></i>
+      <slot v-else>Avançar</slot>
+    </router-link>
   </div>
 </template>
 
@@ -32,6 +36,11 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    link: {
+      type: String,
+      required: false,
+      default: undefined
     }
   }
 }
@@ -51,6 +60,8 @@ export default {
     @apply w-48 h-10
     @screen lg
       @apply w-72 h-12
+  &_link
+    @apply flex items-center justify-center
   &[disabled]
     @apply cursor-not-allowed opacity-50
   &[loading]
