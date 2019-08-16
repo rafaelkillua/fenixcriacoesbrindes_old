@@ -5,6 +5,7 @@
       v-if="mask"
       autocomplete="semautocompletecarai"
       :id="`${name}_input`"
+      :ref="`${name}_input`"
       class="input bg-transparent"
       :value="value"
       @input="v => $emit('input', v)"
@@ -20,6 +21,7 @@
     <money
       v-else-if="type === 'money'"
       :id="`${name}_input`"
+      :ref="`${name}_input`"
       class="input"
       :value="value"
       @input="v => $emit('input', v)"
@@ -33,6 +35,7 @@
     <v-select
       v-else-if="options"
       :inputId="`${name}_input`"
+      :ref="`${name}_input`"
       class="w-full"
       :value="computedOption"
       @input="v => $emit('input', v[itemValue])"
@@ -49,6 +52,7 @@
     <input
       v-else-if="type === 'password'"
       :id="`${name}_input`"
+      :ref="`${name}_input`"
       class="input"
       :value="value"
       :type="showPassword ? 'text' : 'password'"
@@ -62,6 +66,7 @@
     <textarea
       v-else-if="type === 'textarea'"
       :id="`${name}_input`"
+      :ref="`${name}_input`"
       class="input textarea"
       :value="value"
       @input="v => $emit('input', v.target.value)"
@@ -76,6 +81,7 @@
       v-else
       autocomplete="semautocompletecarai"
       :id="`${name}_input`"
+      :ref="`${name}_input`"
       class="input"
       :value="value"
       @input="v => $emit('input', v.target.value)"
@@ -185,6 +191,11 @@ export default {
   computed: {
     computedOption () {
       return this.options.find(option => option[this.itemValue] === this.value)
+    }
+  },
+  methods: {
+    focusInput () {
+      this.$refs[`${this.name}_input`].focus()
     }
   }
 }
