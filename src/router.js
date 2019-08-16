@@ -13,22 +13,34 @@ export default new Router({
     {
       path: '/',
       name: 'dashboard',
-      component: Dashboard
+      component: Dashboard,
+      meta: {
+        pageName: 'Painel'
+      }
     },
     {
       path: '/clients',
       name: 'clients',
-      component: Clients
+      component: Clients,
+      meta: {
+        pageName: 'Clientes'
+      }
     },
     {
       path: '/orders',
       name: 'orders',
-      component: Orders
+      component: Orders,
+      meta: {
+        pageName: 'Ordens de Serviço'
+      }
     },
     {
       path: '/new-order',
       name: 'new-order',
-      component: NewOrder
+      component: NewOrder,
+      meta: {
+        pageName: 'Nova Ordem de Serviço'
+      }
     }
   ]
 })

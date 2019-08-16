@@ -7,6 +7,7 @@
       <div v-show="!online" class="flex items-center justify-center bg-white border border-red-600 text-red-600 font-bold rounded-lg px-4 py-2 mb-4">
         Você está offline! Verifique sua conexão com a internet!
       </div>
+      <p class="text-xl text-primary font-bold p-4">{{$route.meta.pageName}}</p>
       <transition name="fade">
         <router-view/>
       </transition>
@@ -47,7 +48,7 @@ export default {
   @apply w-full min-h-screen max-h-full bg-gray-100
 
 .navbar_container
-  @apply w-full flex flex-col px-6 justify-center bg-white shadow-md mb-4
+  @apply w-full flex flex-col px-6 justify-center bg-white shadow-md
   background-color: rgba(188, 71, 157, 0.1)
 
 .container
