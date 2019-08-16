@@ -4,6 +4,9 @@
       <navbar/>
     </div>
     <div class="container">
+      <div v-show="!online" class="flex items-center justify-center bg-white border border-red-600 text-red-600 font-bold rounded-lg px-4 py-2 mb-4">
+        Você está offline! Verifique sua conexão com a internet!
+      </div>
       <transition name="fade">
         <router-view/>
       </transition>
@@ -15,7 +18,23 @@
 import Navbar from '@/components/Navbar/Navbar'
 
 export default {
-  components: { Navbar }
+  components: { Navbar },
+  data () {
+    return {
+      online: true
+    }
+  },
+  mounted () {
+    window.addEventListener('load', () => {
+      this.online = navigator.onLine
+      window.addEventListener('online', () => {
+        this.online = true
+      })
+      window.addEventListener('offline', () => {
+        this.online = false
+      })
+    })
+  }
 }
 </script>
 
