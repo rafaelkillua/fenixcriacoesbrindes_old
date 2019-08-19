@@ -23,7 +23,9 @@
       </modal-nav>
     </transition>
     <header>
-      <router-link class="logo" to="/"></router-link>
+      <router-link class="logo_link" to="/">
+        <img class="logo" src="@/assets/images/fenix.png" alt="Fenix">
+      </router-link>
       <img @click="modalnav = true" class="bars" src="@/assets/images/menu.svg" alt="">
       <nav>
         <div class="flex justify-center items-center">
@@ -59,16 +61,13 @@ export default {
 
 header
   @apply h-16 w-full flex flex-row items-center justify-between
-  @screen md
-    @apply h-16 w-full flex flex-row items-center justify-between
-  @screen lg
-    @apply h-16 w-full flex flex-row items-center justify-between
 
 .logo
-  @apply bg-no-repeat bg-center h-12 w-32 cursor-pointer bg-contain
-  background-image: url(../../assets/images/fenix.png)
+  @apply h-12
   @screen lg
-    @apply h-14 w-40
+    @apply h-14
+  &_link
+    @apply cursor-pointer
 
 nav
   @apply hidden

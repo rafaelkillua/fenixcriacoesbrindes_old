@@ -48,7 +48,7 @@ export default {
   @apply w-full min-h-screen max-h-full bg-gray-100
 
 .navbar_container
-  @apply w-full flex flex-col px-6 justify-center bg-white shadow-md
+  @apply w-full flex flex-col px-12 justify-center bg-white shadow-md
   background-color: rgba(188, 71, 157, 0.1)
 
 .container
