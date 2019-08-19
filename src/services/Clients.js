@@ -1,7 +1,8 @@
+import axios from '@/plugins/axios'
 
 export default {
   getClients (pagination) {
-    // return ClientModel.find({})
+    return axios.get('/users')
   },
   newClient (data) {
     // return newDoc(ref, data)

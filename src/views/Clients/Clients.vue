@@ -113,13 +113,13 @@ export default {
       try {
         this.loading = true
         this.$refs.vuetable.resetData()
-        this.clients = await Clients.getClients()
-        this.pagination = {
-          current_page: 1,
-          last_page: Math.ceil(this.clients.length / this.pagination.per_page),
-          total: this.clients.length,
-          per_page: this.pagination.per_page
-        }
+        console.log((await Clients.getClients()).data)
+        // this.pagination = {
+        //   current_page: 1,
+        //   last_page: Math.ceil(this.clients.length / this.pagination.per_page),
+        //   total: this.clients.length,
+        //   per_page: this.pagination.per_page
+        // }
         this.$refs.vuetable.reload()
         this.$refs.pagination.setPaginationData(this.pagination)
       } catch (error) {
