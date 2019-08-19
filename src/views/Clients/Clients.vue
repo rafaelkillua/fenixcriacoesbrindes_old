@@ -10,7 +10,7 @@
       class="clients"
       :fields="header"
       :api-mode="false"
-      :data-manager="dataManager"
+      :data="clients"
       :no-data-template="loading ? '' : search.length ? 'Não encontrado' : 'Sem dados'"
     >
     </vuetable>
@@ -109,13 +109,6 @@ export default {
         this.$refs.vuetable.reload()
       }
     },
-    dataManager (sortOrder, pagination) {
-      if (this.clients.length < 1) return
-      return {
-        pagination: this.pagination,
-        data: this.clients.filter(d => d && d.name && d.name.toLowerCase().includes(this.search.toLowerCase()))
-      }
-    },
     async loadClients () {
       try {
         this.loading = true
@@ -136,11 +129,6 @@ export default {
       }
     }
   },
-  watch: {
-    search () {
-      this.$refs.vuetable.reload()
-    }
-  },
   mounted () {
     this.loadClients()
   }
@@ -150,7 +138,8 @@ export default {
 <style lang="sass" scoped>
 
 .main
-  @apply w-full h-full border rounded-lg bg-white h-120
+  @apply w-full h-full border rounded-lg bg-white mb-4
+  min-height: 30rem
 
 </style>
 

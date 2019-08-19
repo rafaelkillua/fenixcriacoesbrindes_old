@@ -1,12 +1,9 @@
-import { getAllDocs, newDoc } from '@/plugins/db'
-
-const ref = 'clients'
 
 export default {
-  getClients () {
-    return getAllDocs(ref)
+  getClients (pagination) {
+    // return ClientModel.find({})
   },
   newClient (data) {
-    return newDoc(ref, data)
+    // return newDoc(ref, data)
   }
 }
